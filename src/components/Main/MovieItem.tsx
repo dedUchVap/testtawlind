@@ -7,7 +7,7 @@ interface IMovieItem {
   name: string;
   url: string;
   stylesCard?: CSSProperties;
-  ref: React.Ref<HTMLDivElement>;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 const MovieItem: React.FC<IMovieItem> = ({ name, url, stylesCard, ref }) => {

@@ -1,7 +1,7 @@
 import "react";
 import MovieItem from "./MovieItem.tsx";
 import classes from "./MovieList.module.css";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { IMovieList } from "../../types/common.ts";
 import { Col, Container, Row } from "react-bootstrap";
 import * as React from "react";
@@ -70,10 +70,9 @@ interface ICardInfo {
   offset: number;
   lenVisibleCard: number;
   remainingCard: number;
-  flippedCard: number
+  flippedCard: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MovieList: React.FC<MovieListProps> = ({
   lenCardDesktop = 7,
   lenCardMiddle = 5,
@@ -81,7 +80,9 @@ const MovieList: React.FC<MovieListProps> = ({
   gap,
 }) => {
   const isMobile = useContext(MobileProviderAdaptive);
-  const [movieList] = useState(initMovieList);
+  const movieList = useMemo(() => {
+    return initMovieList;
+  }, []);
   const [width, setWidth] = useState<number>(window.innerWidth);
   const scrollRefContainer = useRef<HTMLDivElement>(null);
   const [widthCard, setWidthCard] = useState(124);
@@ -90,20 +91,16 @@ const MovieList: React.FC<MovieListProps> = ({
     offset: 0,
     lenVisibleCard: 3,
     remainingCard: 0,
-    flippedCard: 0
+    flippedCard: 0,
   });
-  const lastChildRef = useRef<HTMLDivElement>(null);
   const resolutions = identifyDevice(
     useContext(AdaptiveProviderResolutions),
-    window.innerWidth,
+    width,
   );
 
   useWidth(() => setWidth(window.innerWidth));
 
   useEffect(() => {
-    setCardScrollInfo((draft) => {
-      draft.offset = 0;
-    });
     let nextCardType = 0;
     switch (resolutions) {
       case 1024:
@@ -119,6 +116,8 @@ const MovieList: React.FC<MovieListProps> = ({
     setCardScrollInfo((draft) => {
       draft.lenVisibleCard = nextCardType;
       draft.remainingCard = draft.lenCardInList - nextCardType;
+      draft.flippedCard = 0;
+      draft.offset = 0;
     });
     if (scrollRefContainer.current) {
       setWidthCard(
@@ -136,48 +135,35 @@ const MovieList: React.FC<MovieListProps> = ({
     lenCardMiddle,
     lenCardMobile,
     isMobile,
+    setCardScrollInfo,
   ]);
 
+  function getNumberWithMaxValue(a: number, b: number, maxNumber: number) {
+    return Math.min(maxNumber, Math.max(0, a + maxNumber - b));
+  }
+
   function getNextOffset(variant: "positive" | "negative") {
-    let nextOffset = 0;
-    console.log(cardScrollInfo.remainingCard);
+    let cardNeedMoved = 0;
+    let nextOffset: number;
+
     if (variant === "positive") {
-      if (
-        cardScrollInfo.remainingCard - cardScrollInfo.lenVisibleCard >
-        cardScrollInfo.lenVisibleCard
-      ) {
-        nextOffset =
-          widthCard * cardScrollInfo.lenVisibleCard +
-          gap * cardScrollInfo.lenVisibleCard;
-        setCardScrollInfo((draft) => {
-          draft.remainingCard -= draft.lenVisibleCard;
-          draft.flippedCard += draft.lenVisibleCard
-        });
-      } else {
-        setCardScrollInfo((draft) => {
-          draft.remainingCard = 0;
-          draft.flippedCard = draft.lenCardInList - draft.lenVisibleCard
-        });
-        nextOffset =
-          widthCard * cardScrollInfo.remainingCard +
-          gap * cardScrollInfo.remainingCard;
-      }
+      cardNeedMoved = getNumberWithMaxValue(
+        cardScrollInfo.remainingCard,
+        cardScrollInfo.lenVisibleCard,
+        cardScrollInfo.lenVisibleCard,
+      );
     } else {
-      if (cardScrollInfo.flippedCard >= 7){
-        nextOffset = -(widthCard * cardScrollInfo.lenVisibleCard + (gap * cardScrollInfo.lenVisibleCard))
-        setCardScrollInfo(draft => {
-          draft.remainingCard += draft.lenVisibleCard
-          draft.flippedCard -= draft.lenVisibleCard
-        })
-      }
-      else {
-        nextOffset = -(widthCard * cardScrollInfo.flippedCard + (gap * cardScrollInfo.lenVisibleCard))
-        setCardScrollInfo(draft => {
-          draft.remainingCard += draft.lenVisibleCard
-          draft.flippedCard -= draft.lenCardInList - draft.lenVisibleCard - draft.remainingCard
-      })
+      cardNeedMoved = -getNumberWithMaxValue(
+        cardScrollInfo.flippedCard,
+        cardScrollInfo.lenVisibleCard,
+        cardScrollInfo.lenVisibleCard,
+      );
     }
-    console.log(nextOffset);
+    nextOffset = cardNeedMoved * (widthCard + gap);
+    setCardScrollInfo((draft) => {
+      draft.remainingCard -= cardNeedMoved;
+      draft.flippedCard += cardNeedMoved;
+    });
     return nextOffset;
   }
 
@@ -208,14 +194,13 @@ const MovieList: React.FC<MovieListProps> = ({
                 className={classes.movie}
                 style={{ gap: gap }}
               >
-                {movieList.map((el, index) => (
+                {movieList.map((el) => (
                   <MovieItem
-                    ref={lastChildRef}
                     stylesCard={{
                       width: widthCard,
                       flexBasis: widthCard,
                       transform: `translateX(${-cardScrollInfo.offset}px)`,
-                      transition: `all ${index / 10 + 0.1}s`,
+                      transition: `all ${0.4}s`,
                     }}
                     key={el.name}
                     name={el.name}
