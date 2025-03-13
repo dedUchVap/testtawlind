@@ -19,7 +19,7 @@ const Main = () => {
         >
           <MovieList
             gap={10}
-            lenCardMobile={3}
+            lenCardMobile={2}
             lenCardDesktop={7}
             lenCardMiddle={5}
             scale={0}

@@ -20,7 +20,7 @@ const MyNavBar: React.FC<MyNavBarProps> = ({links}) => {
     }
     return (
         <>
-            <Navbar fixed={'top'} expand={'md'} className={classes.navbar} variant={'dark'}>
+            <Navbar expand={'md'} className={classes.navbar} variant={'dark'}>
               <Container>
                   <Navbar.Brand className={classes.brand}>
                      <FontAwesomeIcon icon={faFilm}></FontAwesomeIcon>

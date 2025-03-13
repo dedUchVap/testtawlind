@@ -6,13 +6,13 @@ import { IMovieList } from "../../types/common.ts";
 import { Col, Container, Row } from "react-bootstrap";
 import * as React from "react";
 import calculateWidth, { identifyDevice } from "../../utils/common.ts";
-import useWidth from "../../hooks/common.ts";
+import useWidth, {useMobile} from "../../hooks/common.ts";
 import {
   AdaptiveProviderResolutions,
-  MobileProviderAdaptive,
 } from "../../providers/AdaptiveProvider.tsx";
 import ScrollButton from "../UI/ScrollButton.tsx";
 import { useImmer } from "use-immer";
+import {DEKSTOPWIDTH, MIDLLEWIDTH, MOBILEWIDTH} from "../../consts/const.ts";
 
 const initMovieList: IMovieList[] = [
   {
@@ -74,15 +74,15 @@ interface ICardInfo {
 }
 
 const MovieList: React.FC<MovieListProps> = ({
-  lenCardDesktop = 7,
-  lenCardMiddle = 5,
-  lenCardMobile = 3,
-  gap,
-}) => {
-  const isMobile = useContext(MobileProviderAdaptive);
+                                               lenCardDesktop = 7,
+                                               lenCardMiddle = 5,
+                                               lenCardMobile = 3,
+                                               gap,
+                                             }) => {
   const movieList = useMemo(() => {
     return initMovieList;
   }, []);
+  const isMobile = useMobile()
   const [width, setWidth] = useState<number>(window.innerWidth);
   const scrollRefContainer = useRef<HTMLDivElement>(null);
   const [widthCard, setWidthCard] = useState(124);
@@ -94,8 +94,8 @@ const MovieList: React.FC<MovieListProps> = ({
     flippedCard: 0,
   });
   const resolutions = identifyDevice(
-    useContext(AdaptiveProviderResolutions),
-    width,
+      useContext(AdaptiveProviderResolutions),
+      width,
   );
 
   useWidth(() => setWidth(window.innerWidth));
@@ -103,13 +103,13 @@ const MovieList: React.FC<MovieListProps> = ({
   useEffect(() => {
     let nextCardType = 0;
     switch (resolutions) {
-      case 1024:
+      case DEKSTOPWIDTH:
         nextCardType = lenCardDesktop;
         break;
-      case 768:
+      case MIDLLEWIDTH:
         nextCardType = lenCardMiddle;
         break;
-      case 500:
+      case MOBILEWIDTH:
         nextCardType = lenCardMobile;
         break;
     }
@@ -121,11 +121,11 @@ const MovieList: React.FC<MovieListProps> = ({
     });
     if (scrollRefContainer.current) {
       setWidthCard(
-        calculateWidth(
-          nextCardType,
-          scrollRefContainer.current.clientWidth,
-          gap,
-        ),
+          calculateWidth(
+              nextCardType,
+              scrollRefContainer.current.clientWidth,
+              gap,
+          ),
       );
     }
   }, [
@@ -144,22 +144,21 @@ const MovieList: React.FC<MovieListProps> = ({
 
   function getNextOffset(variant: "positive" | "negative") {
     let cardNeedMoved = 0;
-    let nextOffset: number;
 
     if (variant === "positive") {
       cardNeedMoved = getNumberWithMaxValue(
-        cardScrollInfo.remainingCard,
-        cardScrollInfo.lenVisibleCard,
-        cardScrollInfo.lenVisibleCard,
+          cardScrollInfo.remainingCard,
+          cardScrollInfo.lenVisibleCard,
+          cardScrollInfo.lenVisibleCard,
       );
     } else {
       cardNeedMoved = -getNumberWithMaxValue(
-        cardScrollInfo.flippedCard,
-        cardScrollInfo.lenVisibleCard,
-        cardScrollInfo.lenVisibleCard,
+          cardScrollInfo.flippedCard,
+          cardScrollInfo.lenVisibleCard,
+          cardScrollInfo.lenVisibleCard,
       );
     }
-    nextOffset = cardNeedMoved * (widthCard + gap);
+    const nextOffset = cardNeedMoved * (widthCard + gap);
     setCardScrollInfo((draft) => {
       draft.remainingCard -= cardNeedMoved;
       draft.flippedCard += cardNeedMoved;
@@ -174,50 +173,51 @@ const MovieList: React.FC<MovieListProps> = ({
     });
   }
 
+
   return (
-    <>
-      <Container fluid={true}>
-        <Row>
-          <Col
-            sm={12}
-            className={"d-flex justify-content-lg-center align-items-lg-center"}
-          >
-            <div className={classes.warp_list_movie}>
-              <ScrollButton
-                classProps={classes.visible_button}
-                handleClick={handleClick}
-                variant={"negative"}
-              />
-              <div className={classes.name_list}>Хиты прошлых лет</div>
-              <div
-                ref={scrollRefContainer}
-                className={classes.movie}
-                style={{ gap: gap }}
-              >
-                {movieList.map((el) => (
-                  <MovieItem
-                    stylesCard={{
-                      width: widthCard,
-                      flexBasis: widthCard,
-                      transform: `translateX(${-cardScrollInfo.offset}px)`,
-                      transition: `all ${0.4}s`,
-                    }}
-                    key={el.name}
-                    name={el.name}
-                    url={el.url}
-                  />
-                ))}
+      <>
+        <Container fluid={true}>
+          <Row>
+            <Col
+                sm={12}
+                className={"d-flex justify-content-lg-center align-items-lg-center"}
+            >
+              <div className={classes.warp_list_movie}>
+                {!isMobile && <ScrollButton
+                    classProps={classes.visible_button}
+                    handleClick={handleClick}
+                    variant={"negative"}
+                />}
+                <div className={classes.name_list}>Хиты прошлых лет</div>
+                <div
+                    ref={scrollRefContainer}
+                    className={isMobile ? classes.movie_mobile : classes.movie}
+                    style={{gap: gap}}
+                >
+                  {movieList.map((el) => (
+                      <MovieItem
+                          stylesCard={{
+                            width: widthCard,
+                            flexBasis: widthCard,
+                            transform: `translateX(${-cardScrollInfo.offset}px)`,
+                            transition: `all ${0.4}s`,
+                          }}
+                          key={el.name}
+                          name={el.name}
+                          url={el.url}
+                      />
+                  ))}
+                </div>
+                {!isMobile && <ScrollButton
+                    classProps={classes.visible_button}
+                    variant={"positive"}
+                    handleClick={handleClick}
+                />}
               </div>
-              <ScrollButton
-                classProps={classes.visible_button}
-                variant={"positive"}
-                handleClick={handleClick}
-              />
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </>
+            </Col>
+          </Row>
+        </Container>
+      </>
   );
 };
 

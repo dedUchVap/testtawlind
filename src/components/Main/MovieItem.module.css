@@ -5,21 +5,17 @@
 }
 
 .movie_img {
+    cursor: pointer;
+    transition: all 0.3s;
     border-radius: 15%;
+    transform-origin: bottom center;
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
     overflow: hidden;
     -webkit-box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
     box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
-}
-
-.movie_img:hover {
-    transition: all 0.3s;
-    transform: scale(1.05);
-    transform-origin: bottom center;
-    filter: brightness(70%);
 }
 
 .wrap_card_name {
@@ -42,4 +38,17 @@
     .movie_card_name {
         font-size: 10px;
     }
+}
+@media (hover: none) and (pointer: coarse) {
+    .movie_img:active{
+        transition: all 0.1s;
+        transform: scale(0.95);
+    }
+}
+@media (hover: hover) and (pointer: fine){
+    .movie_img:hover {
+        transform: scale(1.05);
+        filter: brightness(70%);
+    }
+
 }

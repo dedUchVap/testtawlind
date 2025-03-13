@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {MIDLLEWIDTH} from "../consts/const.ts";
 
 
 function useWidth(callback: () => void) {
@@ -17,3 +18,26 @@ function useWidth(callback: () => void) {
 }
 
 export default useWidth;
+
+
+export function useMobile(){
+    const [isMobile, setIsMobile] = useState(true)
+    console.log(isMobile)
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth < MIDLLEWIDTH)
+        function handleResize(){
+            const width = window.innerWidth
+            if (width < MIDLLEWIDTH){
+                setIsMobile(true)
+            }
+            else {
+                setIsMobile(false)
+            }
+        }
+        window.addEventListener('resize',handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, []);
+    return isMobile;
+}
