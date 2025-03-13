@@ -1,0 +1,29 @@
+.navbar{
+    margin-bottom: 50px;
+    background: black;
+    border-bottom: solid gray 0.5px;
+}
+.navbar a{
+    text-decoration: none;
+}
+.link{
+    color: white;
+}
+.link_selected{
+    color: #94c55f;
+}
+.link::after{
+    display: block;
+    content: '';
+    height: 2px;
+    background-color: #e66465;
+    width: 0;
+    transition: width 0.3s;
+}
+.link:hover::after{
+    content: linear-gradient(#9198e5, #e66465);
+    width: 100%;
+}
+.brand{
+    color: white;
+}

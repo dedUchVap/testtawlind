@@ -1,0 +1,45 @@
+.movie_card {
+    max-width: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+}
+
+.movie_img {
+    border-radius: 15%;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+    -webkit-box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
+    box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
+}
+
+.movie_img:hover {
+    transition: all 0.3s;
+    transform: scale(1.05);
+    transform-origin: bottom center;
+    filter: brightness(70%);
+}
+
+.wrap_card_name {
+    max-width: 90%;
+}
+
+.movie_card_name {
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-align: center;
+    max-width: 100%;
+    text-overflow: ellipsis;
+}
+.wrap_card_movie{
+    padding: 5%;
+}
+
+@media (max-width: 1024px) {
+    .movie_card_name {
+        font-size: 10px;
+    }
+}

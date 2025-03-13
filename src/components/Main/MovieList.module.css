@@ -1,0 +1,46 @@
+.movie{
+    padding: 2% 0 0 0;
+    max-width: 100%;
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+}
+.warp_list_movie{
+    position: relative;
+    width: 80%;
+}
+.warp_list_movie:hover > .visible_button{
+    opacity: 1;
+}
+.name_list{
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .warp_list_movie{
+        width: 100%;
+        position: relative;
+        padding: 10px 0 25px 0;
+    }
+    .movie{
+        padding: 0;
+    }
+    .movie_mobile{
+        padding: 0;
+    }
+}
+.movie_mobile{
+    padding: 2% 0 0 0;
+    max-width: 100%;
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+.visible_button{
+    opacity: 0;
+}
+.movie_mobile::-webkit-scrollbar{
+    display: none;
+}

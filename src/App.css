@@ -1,0 +1,27 @@
+#root{
+    height: 100%;
+    background-color: #1d1d25;
+    color: #f3efef;
+    font-family: Arial;
+}
+html, body{
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+@media (min-width: 1000px) {
+    html{
+        font-size: 14px;
+    }
+}
+.ward_under_bar{
+
+}
+.ward_under_bar:first-child{
+    margin-top: 50px;
+}
+@media (max-width: 800px ) {
+    html{
+        font-size: 14px;
+    }
+}
