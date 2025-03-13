@@ -13,7 +13,7 @@ const MoviePosterBig = () => {
                         <picture>
                             <Image className={classes.img_poster} src={'https://static.okko.tv/images/v4/616bf93b-c016-4a49-ad37-fc534a7b32b1'}/>
                             <div className={classes.title_poster}>Двенадцать друзей оушена</div>
-                            <BookMarkButton className={classes.} />
+                            <BookMarkButton className={classes.button_bookmark} />
                         </picture>
                         </div>
 

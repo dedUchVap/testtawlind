@@ -21,20 +21,23 @@
     position: absolute;
 }
 .wrap_poster {
+    transition: all 0.3s ease-in-out;
     position: relative;
     padding-bottom: 10px;
+}
+.wrap_poster:hover{
+    transform: scale(1.1);
 }
 .button_bookmark{
     position: absolute;
     bottom: 5%;
-    right: 5%;
+    left: 5%;
 
 }
 .img_poster:hover {
     -webkit-box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);
     -moz-box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);
     box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);
-    transform: scale(1.05);
     filter: brightness(40%);
 }
 @media (max-width: 768px) {
