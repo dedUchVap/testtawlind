@@ -5,6 +5,7 @@ import {
   MobileProviderAdaptive,
 } from "../providers/AdaptiveProvider.tsx";
 import MobileDetect from "mobile-detect";
+import MoviePosterBig from "../components/Main/MoviePosterBig.tsx";
 
 const Main = () => {
   return (
@@ -24,6 +25,10 @@ const Main = () => {
             lenCardMiddle={5}
             scale={0}
           />
+
+            <MoviePosterBig>
+
+            </MoviePosterBig>
         </MobileProviderAdaptive.Provider>
       </AdaptiveProviderResolutions.Provider>
     </>

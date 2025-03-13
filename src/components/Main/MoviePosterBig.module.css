@@ -1,0 +1,44 @@
+.img_poster {
+    -webkit-box-shadow: 4px 4px 8px 3px rgba(63, 146, 210, 0.2);
+    -moz-box-shadow: 4px 4px 8px 3px rgba(63, 146, 210, 0.2);
+    box-shadow: 4px 4px 8px 3px rgba(63, 146, 210, 0.2);
+    transition: all 0.3s ease-in-out;
+    filter: brightness(80%);
+    border-radius: 0.25rem;
+    height: 400px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.title_poster {
+    border-radius: 9999px;
+    padding: 8px;
+    background-color: rgba(213, 128, 128, 0.9);
+    color: #000000;
+    font-size: 30px;
+    top: 5%;
+    left: 2%;
+    position: absolute;
+}
+.wrap_poster {
+    position: relative;
+    padding-bottom: 10px;
+}
+.button_bookmark{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+
+}
+.img_poster:hover {
+    -webkit-box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);
+    -moz-box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);
+    box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);
+    transform: scale(1.05);
+    filter: brightness(40%);
+}
+@media (max-width: 768px) {
+    .title_poster{
+        font-size: 24px;
+    }
+}
