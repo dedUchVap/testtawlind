@@ -23,6 +23,7 @@
 }
 
 .movie_card_name {
+    color: var(--color1);
     overflow: hidden;
     display: block;
     white-space: nowrap;

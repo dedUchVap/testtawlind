@@ -1,43 +1,39 @@
-import {useEffect, useState} from "react";
-import {MIDLLEWIDTH} from "../consts/const.ts";
-
+import { useEffect, useState } from "react";
+import { MIDLLEWIDTH } from "../consts/const.ts";
 
 function useWidth(callback: () => void) {
-    const [width, setWidth] = useState(0)
+  const [width, setWidth] = useState(0);
 
-    useEffect(() => {
-        function handleResize(){
-            setWidth(window.screen.width);
-            callback()
-        }
-        window.addEventListener('resize',handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    },[callback])
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.screen.width);
+      callback();
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [callback]);
 
-    return width
+  return width;
 }
 
 export default useWidth;
 
+export function useMobile() {
+  const [isMobile, setIsMobile] = useState(true);
 
-export function useMobile(){
-    const [isMobile, setIsMobile] = useState(true)
-    console.log(isMobile)
+  useEffect(() => {
+    setIsMobile(window.innerWidth < MIDLLEWIDTH);
+    function handleResize() {
+      const width = window.innerWidth;
+      if (width < MIDLLEWIDTH) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    }
+    window.addEventListener("resize", handleResize);
 
-    useEffect(() => {
-        setIsMobile(window.innerWidth < MIDLLEWIDTH)
-        function handleResize(){
-            const width = window.innerWidth
-            if (width < MIDLLEWIDTH){
-                setIsMobile(true)
-            }
-            else {
-                setIsMobile(false)
-            }
-        }
-        window.addEventListener('resize',handleResize)
-
-        return () => window.removeEventListener('resize', handleResize)
-    }, []);
-    return isMobile;
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return isMobile;
 }

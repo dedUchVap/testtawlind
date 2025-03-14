@@ -1,5 +1,5 @@
 import "react";
-import MovieList from "../components/Main/MovieList.tsx";
+import MovieList from "../components/Main/Scroll.tsx";
 import {
   AdaptiveProviderResolutions,
   MobileProviderAdaptive,
@@ -26,9 +26,7 @@ const Main = () => {
             scale={0}
           />
 
-            <MoviePosterBig>
-
-            </MoviePosterBig>
+          <MoviePosterBig></MoviePosterBig>
         </MobileProviderAdaptive.Provider>
       </AdaptiveProviderResolutions.Provider>
     </>

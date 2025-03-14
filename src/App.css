@@ -1,8 +1,8 @@
 #root{
     height: 100%;
-    background-color: #1d1d25;
+    background-color: #16161e;
     color: #f3efef;
-    font-family: Arial;
+    font-family: Calibri;
 }
 html, body{
     min-height: 100vh;
