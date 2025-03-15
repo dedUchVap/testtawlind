@@ -23,6 +23,7 @@
     background: linear-gradient(90deg, #000 6.25%, #000 6.26%, rgba(0, 0, 0, .99) 14.15%, rgba(0, 0, 0, .961) 20.77%, rgba(0, 0, 0, .915) 26.27%, rgba(0, 0, 0, .856) 30.8%, rgba(0, 0, 0, .785) 34.5%, rgba(0, 0, 0, .705) 37.54%, rgba(0, 0, 0, .619) 40.06%, rgba(0, 0, 0, .529) 42.21%, rgba(0, 0, 0, .437) 44.15%, rgba(0, 0, 0, .347) 46.03%, rgba(0, 0, 0, .261) 47.99%, rgba(0, 0, 0, .18) 50.2%, rgba(0, 0, 0, .108) 52.79%, rgba(0, 0, 0, .047) 55.94%, transparent 59.77%);
     position: absolute;
 }
+
 .title_poster {
     display: flex;
     align-items: center;
@@ -46,12 +47,14 @@
     bottom: 5%;
     left: 2%;
 }
-.describe_poster{
+
+.describe_poster {
     color: var(--color1);
     width: 70%;
     line-height: 30px;
     padding-left: 10px;
 }
+
 .button_look {
     color: var(--color1);
     bottom: 5%;
@@ -61,14 +64,17 @@
     right: 2%;
     font-size: 24px;
 }
-.button_look:hover, .button_bookmark:hover{
+
+.button_look:hover, .button_bookmark:hover {
     transition: all 0.3s;
     background-color: var(--color4);
 }
-.button_look:active, .button_bookmark:active{
+
+.button_look:active, .button_bookmark:active {
     transition: all 0.3s;
     background-color: var(--color4);
 }
+
 .img_poster:hover {
     -webkit-box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);
     -moz-box-shadow: 4px 4px 8px 10px rgba(63, 146, 210, 0.2);

@@ -12,7 +12,7 @@ function App() {
             <BrowserRouter>
                 <MyNavBar links={PATHS}/>
                 <div className={'mt-5'}>
-                <RouterList/>
+                    <RouterList/>
                 </div>
             </BrowserRouter>
         </>

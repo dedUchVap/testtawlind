@@ -1,4 +1,4 @@
-.button_forward{
+.button_forward {
     z-index: 2;
     text-align: center;
     width: 50px;
@@ -10,14 +10,17 @@
     background-color: gray;
     transition: all 0.4s;
 }
-.button_forward:hover{
+
+.button_forward:hover {
     color: #e66465;
 }
-.button_forward_positive{
+
+.button_forward_positive {
     right: 3%;
     top: 50%;
 }
-.button_forward_negative{
+
+.button_forward_negative {
     left: 3%;
     top: 50%;
 }

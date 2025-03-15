@@ -1,17 +1,21 @@
-.navbar{
+.navbar {
     background: black;
     border-bottom: solid gray 0.5px;
 }
-.navbar a{
+
+.navbar a {
     text-decoration: none;
 }
-.link{
+
+.link {
     color: var(--color1);
 }
-.link_selected{
+
+.link_selected {
     color: #94c55f;
 }
-.link::after{
+
+.link::after {
     display: block;
     content: '';
     height: 2px;
@@ -19,10 +23,12 @@
     width: 0;
     transition: width 0.3s;
 }
-.link:hover::after{
+
+.link:hover::after {
     content: linear-gradient(#9198e5, #e66465);
     width: 100%;
 }
-.brand{
+
+.brand {
     color: var(--color1);
 }

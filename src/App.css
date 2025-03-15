@@ -1,27 +1,32 @@
-#root{
+#root {
     height: 100%;
     background-color: #16161e;
     color: #f3efef;
     font-family: Calibri;
 }
-html, body{
+
+html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
 }
+
 @media (min-width: 1000px) {
-    html{
+    html {
         font-size: 14px;
     }
 }
-.ward_under_bar{
+
+.ward_under_bar {
 
 }
-.ward_under_bar:first-child{
+
+.ward_under_bar:first-child {
     margin-top: 50px;
 }
+
 @media (max-width: 800px ) {
-    html{
+    html {
         font-size: 14px;
     }
 }

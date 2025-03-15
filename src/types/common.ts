@@ -5,7 +5,8 @@ export interface IPath {
     component: React.FC,
     name: string
 }
-export interface IMovieList{
+
+export interface IMovieList {
     url: string,
     name: string
 }
