@@ -18,13 +18,7 @@ const Main = () => {
             isMobile: new MobileDetect(window.navigator.userAgent).mobile(),
           }}
         >
-          <MovieList
-            gap={10}
-            lenCardMobile={2}
-            lenCardDesktop={7}
-            lenCardMiddle={5}
-            scale={0}
-          />
+          <MovieList lenCardMobile={2} lenCardDesktop={7} lenCardMiddle={5} gap={10} scale={1}></MovieList>
 
           <MoviePosterBig></MoviePosterBig>
         </MobileProviderAdaptive.Provider>

@@ -19,7 +19,7 @@ export default function useScroll(
     lenCardMobile: number = 3,
     gap: number,
     list: any[]
-) {
+): [number, boolean, (variant: "positive" | "negative") => number] {
     const isMobile = useMobile();
     const scrollRefContainer = useRef<HTMLDivElement>(null);
     const [widthCard, setWidthCard] = useState(124);
