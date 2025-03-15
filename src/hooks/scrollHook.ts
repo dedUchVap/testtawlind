@@ -32,10 +32,7 @@ export default function useScroll(
         flippedCard: 0,
     });
     const latestScrollInfo = useRef(cardScrollInfo.lenVisibleCard);
-    const resolutions = identifyDevice(
-        useContext(AdaptiveProviderResolutions),
-        window.innerWidth,
-    );
+
 
     useEffect(() => {
         latestScrollInfo.current = cardScrollInfo.lenVisibleCard;
@@ -43,6 +40,10 @@ export default function useScroll(
 
     useEffect(() => {
         function handleResize() {
+            const resolutions = identifyDevice(
+                {DEKSTOPWIDTH, MIDLLEWIDTH, MOBILEWIDTH},
+                window.innerWidth,
+            );
             if (scrollRefContainer.current) {
                 setWidthCard(
                     calculateWidth(
@@ -77,7 +78,7 @@ export default function useScroll(
         window.addEventListener("resize", handleResize);
 
         return () => window.removeEventListener("resize", handleResize);
-    }, [cardScrollInfo.lenVisibleCard, gap, lenCardDesktop, lenCardMiddle, lenCardMobile, resolutions, scrollRefContainer, setCardScrollInfo]);
+    }, [cardScrollInfo.lenVisibleCard, gap, lenCardDesktop, lenCardMiddle, lenCardMobile,scrollRefContainer, setCardScrollInfo]);
 
     function getNumberWithMaxValue(a: number, b: number, maxNumber: number) {
         return Math.min(maxNumber, Math.max(0, a + maxNumber - b));
@@ -105,7 +106,7 @@ export default function useScroll(
             draft.flippedCard += cardNeedMoved;
         });
         setCardScrollInfo((draft) => {
-            draft.offset = nextOffset
+            draft.offset += nextOffset
         })
         return nextOffset;
     }

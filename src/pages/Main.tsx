@@ -3,6 +3,7 @@ import MovieListContainer from "../components/Main/MovieListContainer.tsx";
 import MovieItem from "../components/Main/MovieItem.tsx";
 import MoviePosterBig from "../components/Main/MoviePosterBig.tsx";
 import {IMovieList} from "../types/common.ts";
+import {AdaptiveProviderResolutions} from "../providers/AdaptiveProvider.tsx";
 
 const initMovieList: IMovieList[] = [
     {
