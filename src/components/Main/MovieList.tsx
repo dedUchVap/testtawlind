@@ -3,6 +3,7 @@ import classes from "./MovieList.module.css";
 import MovieItem from "./MovieItem.tsx";
 import {IMovieList} from "../../types/common.ts";
 import Scroll from "./Scroll.tsx";
+import React from "react";
 
 const initMovieList: IMovieList[] = [
     {
@@ -47,8 +48,14 @@ const initMovieList: IMovieList[] = [
     },
 ];
 
+interface MovieListProps {
+    lenCardMobile: number;
+    lenCardDesktop: number;
+    lenCardMiddle: number;
+    gap: number;
+}
 
-const MovieList = () => {
+const MovieList:React.FC<MovieListProps> = ({lenCardDesktop, lenCardMiddle, lenCardMobile, gap}) => {
   return (
     <>
       <div className={classes.name_list}>Хиты прошлых лет</div>
