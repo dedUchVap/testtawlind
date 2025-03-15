@@ -1,9 +1,9 @@
-import { useMobile } from "./common.ts";
-import { useContext, useEffect, useRef, useState } from "react";
-import { useImmer } from "use-immer";
-import calculateWidth, { identifyDevice } from "../utils/common.ts";
-import { AdaptiveProviderResolutions } from "../providers/AdaptiveProvider.tsx";
-import { DEKSTOPWIDTH, MIDLLEWIDTH, MOBILEWIDTH } from "../consts/const.ts";
+import {useMobile} from "./common.ts";
+import React, {useContext, useEffect, useRef, useState} from "react";
+import {useImmer} from "use-immer";
+import calculateWidth, {identifyDevice} from "../utils/common.ts";
+import {AdaptiveProviderResolutions} from "../providers/AdaptiveProvider.tsx";
+import {DEKSTOPWIDTH, MIDLLEWIDTH, MOBILEWIDTH} from "../consts/const.ts";
 
 interface ICardInfo {
     lenCardInList: number;
@@ -14,14 +14,15 @@ interface ICardInfo {
 }
 
 export default function useScroll(
-    lenCardDesktop: number  = 7,
+    lenCardDesktop: number = 7,
     lenCardMiddle: number = 5,
     lenCardMobile: number = 3,
     gap: number,
-    list: any[]
-): [number, boolean, (variant: "positive" | "negative") => number] {
+    list: any[],
+    scrollContainer: React.RefObject<HTMLDivElement>,
+): [number, boolean, (variant: "positive" | "negative") => number, number] {
     const isMobile = useMobile();
-    const scrollRefContainer = useRef<HTMLDivElement>(null);
+    const scrollRefContainer = scrollContainer;
     const [widthCard, setWidthCard] = useState(124);
     const [cardScrollInfo, setCardScrollInfo] = useImmer<ICardInfo>({
         lenCardInList: list.length,
@@ -76,15 +77,7 @@ export default function useScroll(
         window.addEventListener("resize", handleResize);
 
         return () => window.removeEventListener("resize", handleResize);
-    }, [
-        cardScrollInfo.lenVisibleCard,
-        gap,
-        lenCardDesktop,
-        lenCardMiddle,
-        lenCardMobile,
-        resolutions,
-        setCardScrollInfo,
-    ]);
+    }, [cardScrollInfo.lenVisibleCard, gap, lenCardDesktop, lenCardMiddle, lenCardMobile, resolutions, scrollRefContainer, setCardScrollInfo]);
 
     function getNumberWithMaxValue(a: number, b: number, maxNumber: number) {
         return Math.min(maxNumber, Math.max(0, a + maxNumber - b));
@@ -111,8 +104,11 @@ export default function useScroll(
             draft.remainingCard -= cardNeedMoved;
             draft.flippedCard += cardNeedMoved;
         });
+        setCardScrollInfo((draft) => {
+            draft.offset = nextOffset
+        })
         return nextOffset;
     }
-
-    return [widthCard, isMobile, getNextOffset];
+    console.log(cardScrollInfo.offset)
+    return [widthCard, isMobile, getNextOffset, cardScrollInfo.offset];
 }

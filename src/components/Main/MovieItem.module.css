@@ -1,23 +1,21 @@
 .movie_card {
     max-width: 100%;
+    height: auto;
     flex-shrink: 0;
     scroll-snap-align: center;
 }
 
 .movie_img {
-    cursor: pointer;
+    display: block;
+    max-width: 100% !important;
     transition: all 0.3s;
     border-radius: 15%;
     transform-origin: bottom center;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    overflow: hidden;
+    object-fit: cover;
     -webkit-box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
     box-shadow: 12px 14px 8px -3px rgba(34, 60, 80, 0.2);
 }
-
 .wrap_card_name {
     max-width: 90%;
 }
@@ -31,7 +29,11 @@
     max-width: 100%;
     text-overflow: ellipsis;
 }
-.wrap_card_movie{
+
+.wrap_card_movie {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 5%;
 }
 
@@ -40,13 +42,15 @@
         font-size: 10px;
     }
 }
+
 @media (hover: none) and (pointer: coarse) {
-    .movie_img:active{
+    .movie_img:active {
         transition: all 0.1s;
         transform: scale(0.95);
     }
 }
-@media (hover: hover) and (pointer: fine){
+
+@media (hover: hover) and (pointer: fine) {
     .movie_img:hover {
         transform: scale(1.05);
         filter: brightness(70%);
