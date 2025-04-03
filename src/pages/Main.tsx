@@ -4,6 +4,7 @@ import MovieItem from "../components/Main/MovieItem.tsx";
 import MoviePosterBig from "../components/Main/MoviePosterBig.tsx";
 import {IMovieList} from "../types/common.ts";
 import BigMovieVideoPoster from "../components/Main/BigMovieVideoPoster.tsx";
+import {Container, Row, Col} from "react-bootstrap";
 
 const initMovieList: IMovieList[] = [
     {
@@ -52,13 +53,22 @@ const Main = () => {
     return (
         <>
             <BigMovieVideoPoster></BigMovieVideoPoster>
+            <Container fluid={true}>
+                <Row>
+                    <Col xs={12} className={'d-flex align-content-center justify-content-center'}>
             <MovieListContainer>
+                <MovieListContainer.Name>
+                    Тестовый набор
+                </MovieListContainer.Name>
                 <ScrollContainer lenCardMobile={2} lenCardDesktop={6} lenCardMiddle={5} gap={10} scale={1} key={1}>
                     {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
                         <MovieItem name={movie.name} url={movie.url}></MovieItem>
                     </ScrollContainer.ScrollItem>))}
                 </ScrollContainer>
             </MovieListContainer>
+                    </Col>
+                </Row>
+            </Container>
             <MoviePosterBig></MoviePosterBig>
         </>
     )

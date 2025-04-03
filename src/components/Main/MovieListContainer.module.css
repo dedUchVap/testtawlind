@@ -1,8 +1,16 @@
 .warp_list_movie{
+    position: relative;
     width: 60%;
+    flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.name_movie_list{
+    padding-left: 2%;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
 }
 @media (max-width: 1024px) {
     .warp_list_movie {

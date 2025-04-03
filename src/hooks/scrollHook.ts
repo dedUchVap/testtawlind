@@ -17,12 +17,12 @@ export default function useScroll(
     lenCardMiddle: number = 5,
     lenCardMobile: number = 3,
     gap: number,
-    list: any[],
+    list: never[],
     scrollContainer: React.RefObject<HTMLDivElement>,
 ): [number, boolean, (variant: "positive" | "negative") => number, number] {
     const isMobile = useMobile();
     const scrollRefContainer = scrollContainer;
-    const [widthCard, setWidthCard] = useState(124);
+    const [widthCard, setWidthCard] = useState<number>(124);
     const [cardScrollInfo, setCardScrollInfo] = useImmer<ICardInfo>({
         lenCardInList: list.length,
         offset: 0,
@@ -49,11 +49,10 @@ export default function useScroll(
                         latestScrollInfo.current,
                         scrollRefContainer.current.clientWidth,
                         gap,
-                    ),
+                    )
                 );
             }
             let nextCardType = 0;
-            console.log("Эффект");
             switch (resolutions) {
                 case DEKSTOPWIDTH:
                     nextCardType = lenCardDesktop;
@@ -99,7 +98,10 @@ export default function useScroll(
                 cardScrollInfo.lenVisibleCard,
             );
         }
-        const nextOffset = cardNeedMoved * (widthCard + gap);
+        let nextOffset = 0
+        if (typeof widthCard === "number") {
+           nextOffset = cardNeedMoved * (widthCard + gap)
+        }
         setCardScrollInfo((draft) => {
             draft.remainingCard -= cardNeedMoved;
             draft.flippedCard += cardNeedMoved;
@@ -109,6 +111,5 @@ export default function useScroll(
         })
         return nextOffset;
     }
-    console.log(cardScrollInfo.offset)
     return [widthCard, isMobile, getNextOffset, cardScrollInfo.offset];
 }

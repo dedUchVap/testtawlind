@@ -14,6 +14,7 @@ interface ScrollProps {
     gap: number;
     scale: number;
     children: React.ReactNode
+    fixedWidth?: string
 }
 
 interface ScrollItemProps {
@@ -63,7 +64,9 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
                                     />
                                 )}
                                 <div className={isMobile ? classes.mobile : classes.scroll_desktop} ref={scrollRef}>
-                                    {listChildren.map(child => React.isValidElement(child) ? React.cloneElement(child as ReactElement<{style?: React.CSSProperties}>, {
+                                    {listChildren.map(child => React.isValidElement(child) ? React.cloneElement(child as ReactElement<{
+                                        style?: React.CSSProperties
+                                    }>, {
                                         style: {
                                             width: widthCard,
                                             transform: `translateX(${-offset}px)`
