@@ -1,8 +1,7 @@
 import {useMobile} from "./common.ts";
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useImmer} from "use-immer";
 import calculateWidth, {identifyDevice} from "../utils/common.ts";
-import {AdaptiveProviderResolutions} from "../providers/AdaptiveProvider.tsx";
 import {DEKSTOPWIDTH, MIDLLEWIDTH, MOBILEWIDTH} from "../consts/const.ts";
 
 interface ICardInfo {

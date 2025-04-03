@@ -1,14 +1,19 @@
+@font-face {
+    font-family: Intesteller;
+    src: url("/fonts/OPTIBodoni-Antiqua.otf");
+}
 #root {
     height: 100%;
-    background-color: #16161e;
+    background-color: var(--bacground_fon);
     color: #f3efef;
-    font-family: Calibri;
+    font-family: "Roboto Thin", sans-serif;
 }
 
 html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 @media (min-width: 1000px) {

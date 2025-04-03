@@ -1,5 +1,5 @@
 .navbar {
-    background: black;
+    background: #16161e;
     border-bottom: solid gray 0.5px;
 }
 
@@ -8,6 +8,8 @@
 }
 
 .link {
+    font-size: 18px;
+    font-weight: bold;
     color: var(--color1);
 }
 

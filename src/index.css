@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
-    --color1: #E9EBE;
-    --color2: #C19B8D;
-    --color3: #794982;
-    --color4: #717DAE;
-    --color5: #40376A;
+    --color1: #FAF9F8;
+    --color2: #978EA9;
+    --color3: #A19FB7;
+    --color4: #8680A0;
+    --color5: #243563;
+    --bacground_fon: #0d0d0e;
 }

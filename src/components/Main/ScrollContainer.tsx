@@ -1,7 +1,7 @@
 import "react";
 import classes from "./MovieList.module.css";
 import * as React from "react";
-import {CSSProperties, useRef} from "react";
+import {CSSProperties, ReactElement, useRef} from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import ScrollButton from "../UI/ScrollButton.tsx";
 import useScroll from "../../hooks/scrollHook.ts";
@@ -13,7 +13,7 @@ interface ScrollProps {
     lenCardMiddle: number;
     gap: number;
     scale: number;
-    children: React.ReactElement<ScrollItemProps>[] | undefined
+    children: React.ReactNode
 }
 
 interface ScrollItemProps {
@@ -37,8 +37,9 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
                                                                                                 lenCardMobile = 3,
                                                                                                 gap,
                                                                                             }) => {
+        const listChildren = React.Children.toArray(children)
         const scrollRef = useRef<HTMLDivElement>(null)
-        const [widthCard, isMobile, getNextOffset, offset] = useScroll(lenCardDesktop, lenCardMiddle, lenCardMobile, gap, children, scrollRef)
+        const [widthCard, isMobile, getNextOffset, offset] = useScroll(lenCardDesktop, lenCardMiddle, lenCardMobile, gap, listChildren, scrollRef)
 
         function handleClick(variant: "positive" | "negative") {
             getNextOffset(variant)
@@ -61,8 +62,8 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
                                         variant={"negative"}
                                     />
                                 )}
-                                <div className={isMobile ? classes.movie_mobile : classes.movie} ref={scrollRef}>
-                                    {React.Children.map(children, (child) => React.isValidElement(child) ? React.cloneElement(child, {
+                                <div className={isMobile ? classes.mobile : classes.scroll_desktop} ref={scrollRef}>
+                                    {listChildren.map(child => React.isValidElement(child) ? React.cloneElement(child as ReactElement<{style?: React.CSSProperties}>, {
                                         style: {
                                             width: widthCard,
                                             transform: `translateX(${-offset}px)`

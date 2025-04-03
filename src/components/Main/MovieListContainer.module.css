@@ -1,0 +1,13 @@
+.warp_list_movie{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 1024px) {
+    .warp_list_movie {
+        width: 100%;
+        position: relative;
+        padding: 10px 0 25px 0;
+    }
+}

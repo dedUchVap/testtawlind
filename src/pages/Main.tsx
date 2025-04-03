@@ -1,9 +1,9 @@
-import { ScrollContainer } from "../components/Main/ScrollContainer";
+import {ScrollContainer} from "../components/Main/ScrollContainer";
 import MovieListContainer from "../components/Main/MovieListContainer.tsx";
 import MovieItem from "../components/Main/MovieItem.tsx";
 import MoviePosterBig from "../components/Main/MoviePosterBig.tsx";
 import {IMovieList} from "../types/common.ts";
-import {AdaptiveProviderResolutions} from "../providers/AdaptiveProvider.tsx";
+import BigMovieVideoPoster from "../components/Main/BigMovieVideoPoster.tsx";
 
 const initMovieList: IMovieList[] = [
     {
@@ -48,21 +48,21 @@ const initMovieList: IMovieList[] = [
     },
 ];
 
-
 const Main = () => {
     return (
         <>
-                <MovieListContainer>
-                    <ScrollContainer lenCardMobile={3} lenCardDesktop={7} lenCardMiddle={5} gap={10} scale={1}>
-                        {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                            <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                        </ScrollContainer.ScrollItem>))}
-                    </ScrollContainer>
-                </MovieListContainer>
-                <MoviePosterBig></MoviePosterBig>
-</>
-)
-    ;
+            <BigMovieVideoPoster></BigMovieVideoPoster>
+            <MovieListContainer>
+                <ScrollContainer lenCardMobile={2} lenCardDesktop={6} lenCardMiddle={5} gap={10} scale={1} key={1}>
+                    {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                        <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                    </ScrollContainer.ScrollItem>))}
+                </ScrollContainer>
+            </MovieListContainer>
+            <MoviePosterBig></MoviePosterBig>
+        </>
+    )
+        ;
 };
 
 export default Main;

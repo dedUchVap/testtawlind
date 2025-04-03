@@ -1,4 +1,4 @@
-.movie {
+.scroll_desktop {
     padding: 2% 0 0 0;
     max-width: 100%;
     display: flex;
@@ -9,7 +9,7 @@
 .warp_list_movie {
     text-align: center;
     position: relative;
-    width: 80%;
+    width: 100%;
 }
 
 .warp_list_movie:hover > .visible_button {
@@ -28,23 +28,7 @@
     scroll-snap-align: center;
 }
 
-@media (max-width: 1024px) {
-    .warp_list_movie {
-        width: 100%;
-        position: relative;
-        padding: 10px 0 25px 0;
-    }
-
-    .movie {
-        padding: 0;
-    }
-
-    .movie_mobile {
-        padding: 0;
-    }
-}
-
-.movie_mobile {
+.mobile {
     padding: 2% 0 0 0;
     max-width: 100%;
     display: flex;
