@@ -5,16 +5,15 @@ import {CSSProperties, ReactElement, useRef} from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import ScrollButton from "../UI/ScrollButton.tsx";
 import useScroll from "../../hooks/scrollHook.ts";
+import {breakPoints} from "../../hooks/typesHooks.ts";
 
 
 interface ScrollProps {
-    lenCardMobile: number;
-    lenCardDesktop: number;
-    lenCardMiddle: number;
     gap: number;
     scale: number;
     children: React.ReactNode
     fixedWidth?: string
+    breakPoints: breakPoints[]
 }
 
 interface ScrollItemProps {
@@ -33,14 +32,13 @@ const ScrollItem: React.FC<ScrollItemProps> = ({children, style, handleHover}) =
 
 const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItemProps> } = ({
                                                                                                 children,
-                                                                                                lenCardDesktop = 7,
-                                                                                                lenCardMiddle = 5,
-                                                                                                lenCardMobile = 3,
                                                                                                 gap,
+    breakPoints,
+    fixedWidth = ''
                                                                                             }) => {
         const listChildren = React.Children.toArray(children)
         const scrollRef = useRef<HTMLDivElement>(null)
-        const [widthCard, isMobile, getNextOffset, offset] = useScroll(lenCardDesktop, lenCardMiddle, lenCardMobile, gap, listChildren, scrollRef)
+        const [widthCard, isMobile, getNextOffset, offset] = useScroll(breakPoints, gap, listChildren, scrollRef)
 
         function handleClick(variant: "positive" | "negative") {
             getNextOffset(variant)
@@ -49,7 +47,7 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
 
         return (
             <>
-                <Container fluid={true}>
+                <Container fluid={true} className={'p-0'}>
                     <Row>
                         <Col
                             sm={12}
@@ -68,8 +66,9 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
                                         style?: React.CSSProperties
                                     }>, {
                                         style: {
-                                            width: widthCard,
-                                            transform: `translateX(${-offset}px)`
+                                            width: fixedWidth ? fixedWidth : widthCard,
+                                            transform: `translateX(${-offset}px)`,
+                                            marginRight: gap
                                         }
                                     }) : child)}
                                 </div>

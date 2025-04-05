@@ -1,7 +1,6 @@
 .scroll_desktop {
     max-width: 100%;
     display: flex;
-    gap: 10px;
     overflow: hidden;
 }
 
@@ -20,6 +19,7 @@
     text-align: center;
 }
 .scroll_item{
+    overflow: unset;
     transition: 0.3s all;
     max-width: 100%;
     height: auto;

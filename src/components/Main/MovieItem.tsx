@@ -28,7 +28,7 @@ const MovieItem: React.FC<IMovieItem> = ({name, url, stylesCard, ref}) => {
                         />
                     </div>
                     <div className={classes.wrap_card_name}>
-                        <span className={classes.movie_card_name}>{name}</span>
+                        <div className={classes.movie_card_name}>{name}</div>
                     </div>
                 </div>
             </div>

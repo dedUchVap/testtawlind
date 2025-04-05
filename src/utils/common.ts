@@ -1,14 +1,16 @@
+import {breakPoints} from "../hooks/typesHooks.ts";
+
 export default function calculateWidth(len: number, containerWidth: number,
     gap: number = 10,
 ): number {
-    return (containerWidth - len * gap) / len;
+    return (containerWidth + gap) / len;
 }
 
 export function identifyDevice(
-    resolutions: { [key: string]: number },
+    breackPoints: breakPoints[],
     containerWidth: number,
-): number {
-    const values = Object.values(resolutions);
+): breakPoints {
+    const values = breackPoints
     const len = values.length;
     let result = values[len - 1];
     let flagBreak = false;
@@ -18,15 +20,16 @@ export function identifyDevice(
             return;
         }
         if (index === len - 1) {
-            if (value > containerWidth) {
+            if (value.width > containerWidth) {
                 result = values[index];
                 return;
             }
         }
-        if (value >= containerWidth && value > values[index + 1]) {
+        if (value.width >= containerWidth && value.width > values[index + 1].width) {
             return;
         } else result = value;
         flagBreak = true;
     });
+    console.log(result)
     return result;
 }

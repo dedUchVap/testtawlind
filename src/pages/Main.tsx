@@ -56,20 +56,71 @@ const Main = () => {
             <Container fluid={true}>
                 <Row>
                     <Col xs={12} className={'d-flex align-content-center justify-content-center'}>
-            <MovieListContainer>
-                <MovieListContainer.Name>
-                    Тестовый набор
-                </MovieListContainer.Name>
-                <ScrollContainer lenCardMobile={2} lenCardDesktop={6} lenCardMiddle={5} gap={10} scale={1} key={1}>
-                    {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                        <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                    </ScrollContainer.ScrollItem>))}
-                </ScrollContainer>
-            </MovieListContainer>
+                        <MovieListContainer>
+                            <MovieListContainer.Name>
+                                Тестовый набор
+                            </MovieListContainer.Name>
+                            <ScrollContainer breakPoints={[{width: 1024, lenVisibleCard: 5}, {
+                                width: 724,
+                                lenVisibleCard: 3
+                            }, {width: 500, lenVisibleCard: 2}]} gap={10} scale={1} key={1}>
+                                {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                    <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                                </ScrollContainer.ScrollItem>))}
+                                {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                    <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                                </ScrollContainer.ScrollItem>))}
+                                {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                    <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                                </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
+                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
+                            </ScrollContainer.ScrollItem>))}
+                            </ScrollContainer>
+                        </MovieListContainer>
                     </Col>
                 </Row>
             </Container>
-            <MoviePosterBig></MoviePosterBig>
+            <ScrollContainer gap={0} scale={1} breakPoints={[{width: 1024, lenVisibleCard: 1}]}>
+                <ScrollContainer.ScrollItem>
+                    <MoviePosterBig>
+
+                    </MoviePosterBig>
+                </ScrollContainer.ScrollItem>
+                <ScrollContainer.ScrollItem>
+                    <MoviePosterBig>
+
+                    </MoviePosterBig>
+                </ScrollContainer.ScrollItem>
+                <ScrollContainer.ScrollItem>
+                    <MoviePosterBig>
+
+                    </MoviePosterBig>
+                </ScrollContainer.ScrollItem>
+
+            </ScrollContainer>
+
         </>
     )
         ;

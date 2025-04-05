@@ -2,7 +2,7 @@ import {useMobile} from "./common.ts";
 import React, {useEffect, useRef, useState} from "react";
 import {useImmer} from "use-immer";
 import calculateWidth, {identifyDevice} from "../utils/common.ts";
-import {DEKSTOPWIDTH, MIDLLEWIDTH, MOBILEWIDTH} from "../consts/const.ts";
+import {breakPoints} from "./typesHooks.ts";
 
 interface ICardInfo {
     lenCardInList: number;
@@ -13,9 +13,7 @@ interface ICardInfo {
 }
 
 export default function useScroll(
-    lenCardDesktop: number = 7,
-    lenCardMiddle: number = 5,
-    lenCardMobile: number = 3,
+    breakpoints: breakPoints[],
     gap: number,
     list: never[],
     scrollContainer: React.RefObject<HTMLDivElement>,
@@ -31,7 +29,7 @@ export default function useScroll(
         flippedCard: 0,
     });
     const latestScrollInfo = useRef(cardScrollInfo.lenVisibleCard);
-
+    const breakPointsRef = useRef(breakpoints)
 
     useEffect(() => {
         latestScrollInfo.current = cardScrollInfo.lenVisibleCard;
@@ -39,9 +37,9 @@ export default function useScroll(
 
     useEffect(() => {
         function handleResize() {
-            const resolutions = identifyDevice(
-                {DEKSTOPWIDTH, MIDLLEWIDTH, MOBILEWIDTH},
-                window.innerWidth,
+            const currentBreakPoint = identifyDevice(
+                breakPointsRef.current,
+                window.innerWidth
             );
             if (scrollRefContainer.current) {
                 setWidthCard(
@@ -52,18 +50,8 @@ export default function useScroll(
                     )
                 );
             }
-            let nextCardType = 0;
-            switch (resolutions) {
-                case DEKSTOPWIDTH:
-                    nextCardType = lenCardDesktop;
-                    break;
-                case MIDLLEWIDTH:
-                    nextCardType = lenCardMiddle;
-                    break;
-                case MOBILEWIDTH:
-                    nextCardType = lenCardMobile;
-                    break;
-            }
+            const nextCardType = currentBreakPoint.lenVisibleCard
+
             setCardScrollInfo((draft) => {
                 draft.lenVisibleCard = nextCardType;
                 draft.remainingCard = draft.lenCardInList - nextCardType;
@@ -76,7 +64,7 @@ export default function useScroll(
         window.addEventListener("resize", handleResize);
 
         return () => window.removeEventListener("resize", handleResize);
-    }, [cardScrollInfo.lenVisibleCard, gap, lenCardDesktop, lenCardMiddle, lenCardMobile,scrollRefContainer, setCardScrollInfo]);
+    }, [cardScrollInfo.lenVisibleCard, gap,scrollRefContainer, setCardScrollInfo]);
 
     function getNumberWithMaxValue(a: number, b: number, maxNumber: number) {
         return Math.min(maxNumber, Math.max(0, a + maxNumber - b));
@@ -99,9 +87,7 @@ export default function useScroll(
             );
         }
         let nextOffset = 0
-        if (typeof widthCard === "number") {
-           nextOffset = cardNeedMoved * (widthCard + gap)
-        }
+        nextOffset = cardNeedMoved * (widthCard + gap)
         setCardScrollInfo((draft) => {
             draft.remainingCard -= cardNeedMoved;
             draft.flippedCard += cardNeedMoved;

@@ -8,6 +8,7 @@
     object-fit: cover;
 }
 .video_box {
+    margin-bottom: 15px;
     position: relative;
     width: 100%;
 }
