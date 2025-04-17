@@ -1,16 +1,17 @@
 .scroll_desktop {
+    box-sizing: border-box;
     max-width: 100%;
     display: flex;
     overflow: hidden;
 }
 
-.warp_list_movie {
+.warp {
     text-align: center;
     position: relative;
     width: 100%;
 }
 
-.warp_list_movie:hover > .visible_button {
+.warp:hover > .visible_button {
     opacity: 1;
 }
 
@@ -31,7 +32,6 @@
     padding: 2% 0 0 0;
     max-width: 100%;
     display: flex;
-    gap: 10px;
     overflow: hidden;
     overflow-x: auto;
     scroll-snap-type: x mandatory;

@@ -3,7 +3,7 @@ import {breakPoints} from "../hooks/typesHooks.ts";
 export default function calculateWidth(len: number, containerWidth: number,
     gap: number = 10,
 ): number {
-    return (containerWidth + gap) / len;
+    return (containerWidth) / len;
 }
 
 export function identifyDevice(

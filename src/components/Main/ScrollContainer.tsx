@@ -33,8 +33,8 @@ const ScrollItem: React.FC<ScrollItemProps> = ({children, style, handleHover}) =
 const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItemProps> } = ({
                                                                                                 children,
                                                                                                 gap,
-    breakPoints,
-    fixedWidth = ''
+                                                                                                breakPoints,
+                                                                                                fixedWidth = ''
                                                                                             }) => {
         const listChildren = React.Children.toArray(children)
         const scrollRef = useRef<HTMLDivElement>(null)
@@ -44,7 +44,6 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
             getNextOffset(variant)
         }
 
-
         return (
             <>
                 <Container fluid={true} className={'p-0'}>
@@ -53,7 +52,7 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
                             sm={12}
                             className={"d-flex justify-content-lg-center align-items-lg-center"}
                         >
-                            <div className={classes.warp_list_movie}>
+                            <div className={classes.warp}>
                                 {!isMobile && (
                                     <ScrollButton
                                         classProps={classes.visible_button}
@@ -62,15 +61,16 @@ const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItem
                                     />
                                 )}
                                 <div className={isMobile ? classes.mobile : classes.scroll_desktop} ref={scrollRef}>
+                                    <div style={{ transform: `translateX(${-offset}px)`, display: 'flex', transition: 'all 0.3s'}}>
                                     {listChildren.map(child => React.isValidElement(child) ? React.cloneElement(child as ReactElement<{
                                         style?: React.CSSProperties
                                     }>, {
                                         style: {
                                             width: fixedWidth ? fixedWidth : widthCard,
-                                            transform: `translateX(${-offset}px)`,
                                             marginRight: gap
                                         }
                                     }) : child)}
+                                    </div>
                                 </div>
                                 {!isMobile && (
                                     <ScrollButton
