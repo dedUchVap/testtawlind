@@ -1,18 +1,21 @@
 import 'react'
 import {Container, Nav, Navbar} from "react-bootstrap";
-import {IPath} from "../../types/common.ts";
+import {IPath, IPathModal} from "../../types/common.ts";
 import * as React from "react";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import classes from "./MyNavBar.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilm} from "@fortawesome/free-solid-svg-icons";
+import LinkWithAbsolute from "./LinkWithAbsolute.tsx";
+
 
 interface MyNavBarProps {
     links: IPath[]
+    links_modal: IPathModal[]
 }
 
-const MyNavBar: React.FC<MyNavBarProps> = ({links}) => {
+const MyNavBar: React.FC<MyNavBarProps> = ({links, links_modal}) => {
     const [selectedRef, setSelectedRef] = useState<string>('')
 
     function handleClick(ref: string) {
@@ -39,6 +42,11 @@ const MyNavBar: React.FC<MyNavBarProps> = ({links}) => {
                                     {link.name}
                                 </Link>
                             )}
+                            {links_modal.map(link =>
+                                <LinkWithAbsolute function_render_page={link.render_func}
+                                                  key={link.name}>
+                                    {link.name}
+                                </LinkWithAbsolute>)}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

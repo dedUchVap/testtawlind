@@ -1,0 +1,68 @@
+.wrapper_card {
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+    padding: 5%;
+    background-color: var(--bacground_fon_form);
+    opacity: 0.90;
+}
+
+.title_block {
+    font-weight: bold;
+    color: white;
+    font-size: 28px;
+}
+
+.block_metadata {
+    color: white;
+    font-size: 20px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.block_grade {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--color4);
+}
+
+.block_year {
+
+}
+
+.block_genre {
+
+}
+
+.block_duration {
+
+}
+
+.block_country {
+
+}
+.block_description{
+    padding-top: 10px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+@media (max-width: 900px) {
+    .block_metadata{
+        font-size: 16px;
+    }
+    .block_description{
+        font-size: 16px;
+    }
+    .title_block{
+        font-size: 20px;
+    }
+}

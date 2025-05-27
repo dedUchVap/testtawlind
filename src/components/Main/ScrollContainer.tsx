@@ -1,91 +1,30 @@
 import "react";
-import classes from "./MovieList.module.css";
 import * as React from "react";
-import {CSSProperties, ReactElement, useRef} from "react";
-import {Col, Container, Row} from "react-bootstrap";
-import ScrollButton from "../UI/ScrollButton.tsx";
-import useScroll from "../../hooks/scrollHook.ts";
-import {breakPoints} from "../../hooks/typesHooks.ts";
-
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Navigation} from "swiper/modules";
+import {IMovieList} from "../../types/common.ts";
+import MovieItem from "./MovieItem.tsx";
+import 'swiper/css';
+import 'swiper/css/navigation'
+import classes from "./ScrollCssModule.module.css";
 
 interface ScrollProps {
-    gap: number;
-    scale: number;
-    children: React.ReactNode
-    fixedWidth?: string
-    breakPoints: breakPoints[]
+    items: IMovieList[]
 }
 
-interface ScrollItemProps {
-    children: React.ReactNode
-    style?: CSSProperties;
-    handleHover?: (event: React.MouseEvent) => void
-}
 
-const ScrollItem: React.FC<ScrollItemProps> = ({children, style, handleHover}) => {
-    return (
-        <div onClick={handleHover} style={style} className={classes.scroll_item}>
-            {children}
-        </div>
-    )
-}
-
-const ScrollContainer: React.FC<ScrollProps> & { ScrollItem: React.FC<ScrollItemProps> } = ({
-                                                                                                children,
-                                                                                                gap,
-    breakPoints,
-    fixedWidth = ''
-                                                                                            }) => {
-        const listChildren = React.Children.toArray(children)
-        const scrollRef = useRef<HTMLDivElement>(null)
-        const [widthCard, isMobile, getNextOffset, offset] = useScroll(breakPoints, gap, listChildren, scrollRef)
-
-        function handleClick(variant: "positive" | "negative") {
-            getNextOffset(variant)
-        }
-
-
+const ScrollContainerMovie: React.FC<ScrollProps>  = ({items}) => {
         return (
             <>
-                <Container fluid={true} className={'p-0'}>
-                    <Row>
-                        <Col
-                            sm={12}
-                            className={"d-flex justify-content-lg-center align-items-lg-center"}
-                        >
-                            <div className={classes.warp_list_movie}>
-                                {!isMobile && (
-                                    <ScrollButton
-                                        classProps={classes.visible_button}
-                                        handleClick={handleClick}
-                                        variant={"negative"}
-                                    />
-                                )}
-                                <div className={isMobile ? classes.mobile : classes.scroll_desktop} ref={scrollRef}>
-                                    {listChildren.map(child => React.isValidElement(child) ? React.cloneElement(child as ReactElement<{
-                                        style?: React.CSSProperties
-                                    }>, {
-                                        style: {
-                                            width: fixedWidth ? fixedWidth : widthCard,
-                                            transform: `translateX(${-offset}px)`,
-                                            marginRight: gap
-                                        }
-                                    }) : child)}
-                                </div>
-                                {!isMobile && (
-                                    <ScrollButton
-                                        classProps={classes.visible_button}
-                                        variant={"positive"}
-                                        handleClick={handleClick}
-                                    />
-                                )}
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
+            <Swiper className={classes.swiper_my} slidesPerView={3} spaceBetween={20} breakpoints={{0: {slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 5}, 480: {slidesPerView: 2, slidesPerGroup: 2}, 917: {slidesPerView: 3, slidesPerGroup: 2}, 1024: {slidesPerView: 5, slidesPerGroup: 5}}} modules={[Navigation]} navigation>
+                {items.map(i => (
+                    <SwiperSlide>
+                        <MovieItem name={i.name} url={i.url}></MovieItem>
+                    </SwiperSlide>))}
+            </Swiper>
             </>
         );
     }
 ;
-ScrollContainer.ScrollItem = ScrollItem
-export {ScrollContainer};
+
+export default ScrollContainerMovie;

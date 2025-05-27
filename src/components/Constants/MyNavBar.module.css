@@ -8,6 +8,7 @@
 }
 
 .link {
+    cursor: pointer;
     font-size: 18px;
     font-weight: bold;
     color: var(--color1);
@@ -15,6 +16,9 @@
 
 .link_selected {
     color: #94c55f;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .link::after {

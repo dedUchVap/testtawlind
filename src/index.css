@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+    font-family: 'KinoMy';
+    src: url('/fonts/SCE-PS3RodinLATINBold.ttf') format('ttf');
+}
 :root {
     --color1: #FAF9F8;
     --color2: #978EA9;
     --color3: #A19FB7;
     --color4: #8680A0;
     --color5: #243563;
-    --bacground_fon: #0d0d0e;
+    --bacground_fon: rgb(13, 13, 14);
+    --breakpoint-big-movie: 1024;
+    --bacground-modal-color: rgba(13, 13, 14, 0.95);
+    --bacground_fon_form: #1b1b1f;
+    --gap_form: 12px;
+    --modal_break: 1024px;
+    --gradient_back: linear-gradient(90deg, #000 6.25%, #000 6.26%, rgba(0, 0, 0, .99) 14.15%, rgba(0, 0, 0, .961) 20.77%, rgba(0, 0, 0, .915) 26.27%, rgba(0, 0, 0, .856) 30.8%, rgba(0, 0, 0, .785) 34.5%, rgba(0, 0, 0, .705) 37.54%, rgba(0, 0, 0, .619) 40.06%, rgba(0, 0, 0, .529) 42.21%, rgba(0, 0, 0, .437) 44.15%, rgba(0, 0, 0, .347) 46.03%, rgba(0, 0, 0, .261) 47.99%, rgba(0, 0, 0, .18) 50.2%, rgba(0, 0, 0, .108) 52.79%, rgba(0, 0, 0, .047) 55.94%, transparent 59.77%);
 }

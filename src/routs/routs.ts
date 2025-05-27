@@ -1,11 +1,16 @@
-import {IPath} from "../types/common.ts";
+import {IPath, IPathModal} from "../types/common.ts";
 import Admin from "../pages/Admin.tsx";
-import LoginRegister from "../pages/LoginRegister.tsx";
 import Main from "../pages/Main.tsx";
+import {store} from "../store/store.ts";
+import {on} from "../features/login/loginReg.ts";
+import MovieWatch from "../pages/MovieWatch.tsx";
 
 
 export const PATHS: IPath[] = [
-    {url: 'admin', component: Admin, name: 'Администрирование'},
-    {url: 'log_reg', component: LoginRegister, name: 'Вход/Регистрация'},
-    {url: '/', component: Main, name: 'Главная'}
+    {url: 'admin', component: Admin, name: 'Администрирование', render_func: false},
+    {url: '/', component: Main, name: 'Главная', render_func: false},
+    {url: '/movie_test', component: MovieWatch, name: 'Тестовая страница фильма', render_func: false}
+]
+export const MODAL_PATH: IPathModal[] = [
+    {name: 'Регистрация/Вход', render_func: () => store.dispatch(on())}
 ]

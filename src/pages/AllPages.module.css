@@ -1,0 +1,17 @@
+.wrapper_movie{
+    background-color: var(--bacground_fon);
+    height: 100%;
+    width: 100%;
+}
+.section_watch_movie{
+    padding: 3%;
+    background-color: var(--bacground_fon_form);
+    height: 100%;
+    border-radius: 70px 70px 0 0;
+}
+
+@media (max-width: 900px) {
+    .section_watch_movie{
+        padding: 5%;
+    }
+}

@@ -1,8 +1,9 @@
 import './App.css'
 import RouterList from "./components/Routs/RouterList.tsx";
 import MyNavBar from "./components/Constants/MyNavBar.tsx";
-import {PATHS} from "./routs/routs.ts";
+import {MODAL_PATH, PATHS} from "./routs/routs.ts";
 import {BrowserRouter} from "react-router-dom";
+import LoginRegister from "./pages/LoginRegister.tsx";
 
 
 function App() {
@@ -10,10 +11,9 @@ function App() {
     return (
         <>
             <BrowserRouter>
-                <MyNavBar links={PATHS}/>
-                <div>
-                    <RouterList/>
-                </div>
+                <LoginRegister></LoginRegister>
+                <MyNavBar links_modal={MODAL_PATH} links={PATHS}/>
+                <RouterList/>
             </BrowserRouter>
         </>
     )

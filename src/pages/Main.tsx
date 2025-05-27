@@ -1,10 +1,9 @@
-import {ScrollContainer} from "../components/Main/ScrollContainer";
-import MovieListContainer from "../components/Main/MovieListContainer.tsx";
-import MovieItem from "../components/Main/MovieItem.tsx";
-import MoviePosterBig from "../components/Main/MoviePosterBig.tsx";
-import {IMovieList} from "../types/common.ts";
+import ScrollContainerMovie from "../components/Main/ScrollContainer.tsx";
+import {IMovieList, IMovieBig} from "../types/common.ts";
 import BigMovieVideoPoster from "../components/Main/BigMovieVideoPoster.tsx";
 import {Container, Row, Col} from "react-bootstrap";
+import ScrollContainerBigMovie from "../components/Main/ScrollMovieBigPoster.tsx";
+import LinePrettyMbRenameLetter from "../components/Main/LinePrettyMbRenameLetter.tsx";
 
 const initMovieList: IMovieList[] = [
     {
@@ -49,78 +48,73 @@ const initMovieList: IMovieList[] = [
     },
 ];
 
+const initBigMoviePoster: IMovieBig[] = [{
+    id: 1,
+    name: 'Interstellar',
+    imgUrl: "https://naked-science.ru/wp-content/uploads/2016/04/article_interstellar-teaser08166921.jpg",
+    describe: 'Наше время на Земле подошло к концу, команда исследователей берет на себя самую важную миссию в истории человечества; путешествуя за пределами нашей галактики, чтобы узнать есть ли у человечества будущее среди звезд.'
+},
+    {
+        id: 2,
+        name: 'Interstellar',
+        imgUrl: "https://naked-science.ru/wp-content/uploads/2016/04/article_interstellar-teaser08166921.jpg",
+        describe: 'Наше время на Земле подошло к концу, команда исследователей берет на себя самую важную миссию в истории человечества; путешествуя за пределами нашей галактики, чтобы узнать есть ли у человечества будущее среди звезд.'
+    },
+    {
+        id: 3,
+        name: 'Interstellar',
+        imgUrl: "https://naked-science.ru/wp-content/uploads/2016/04/article_interstellar-teaser08166921.jpg",
+        describe: 'Наше время на Земле подошло к концу, команда исследователей берет на себя самую важную миссию в истории человечества; путешествуя за пределами нашей галактики, чтобы узнать есть ли у человечества будущее среди звезд.'
+    },
+    {
+        id: 4,
+        name: 'Interstellar',
+        imgUrl: "https://naked-science.ru/wp-content/uploads/2016/04/article_interstellar-teaser08166921.jpg",
+        describe: 'Наше время на Земле подошло к концу, команда исследователей берет на себя самую важную миссию в истории человечества; путешествуя за пределами нашей галактики, чтобы узнать есть ли у человечества будущее среди звезд.'
+    },
+    {
+        id: 5,
+        name: 'Interstellar',
+        imgUrl: "https://naked-science.ru/wp-content/uploads/2016/04/article_interstellar-teaser08166921.jpg",
+        describe: 'Наше время на Земле подошло к концу, команда исследователей берет на себя самую важную миссию в истории человечества; путешествуя за пределами нашей галактики, чтобы узнать есть ли у человечества будущее среди звезд.'
+    }]
+
 const Main = () => {
     return (
         <>
             <BigMovieVideoPoster></BigMovieVideoPoster>
-            <Container fluid={true}>
-                <Row>
-                    <Col xs={12} className={'d-flex align-content-center justify-content-center'}>
-                        <MovieListContainer>
-                            <MovieListContainer.Name>
-                                Тестовый набор
-                            </MovieListContainer.Name>
-                            <ScrollContainer breakPoints={[{width: 1024, lenVisibleCard: 5}, {
-                                width: 724,
-                                lenVisibleCard: 3
-                            }, {width: 500, lenVisibleCard: 2}]} gap={10} scale={1} key={1}>
-                                {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                    <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                                </ScrollContainer.ScrollItem>))}
-                                {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                    <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                                </ScrollContainer.ScrollItem>))}
-                                {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                    <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                                </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))} {initMovieList.map((movie) => (<ScrollContainer.ScrollItem key={movie.name}>
-                                <MovieItem name={movie.name} url={movie.url}></MovieItem>
-                            </ScrollContainer.ScrollItem>))}
-                            </ScrollContainer>
-                        </MovieListContainer>
-                    </Col>
-                </Row>
-            </Container>
-            <ScrollContainer gap={0} scale={1} breakPoints={[{width: 1024, lenVisibleCard: 1}]}>
-                <ScrollContainer.ScrollItem>
-                    <MoviePosterBig>
-
-                    </MoviePosterBig>
-                </ScrollContainer.ScrollItem>
-                <ScrollContainer.ScrollItem>
-                    <MoviePosterBig>
-
-                    </MoviePosterBig>
-                </ScrollContainer.ScrollItem>
-                <ScrollContainer.ScrollItem>
-                    <MoviePosterBig>
-
-                    </MoviePosterBig>
-                </ScrollContainer.ScrollItem>
-
-            </ScrollContainer>
-
+            <LinePrettyMbRenameLetter/>
+            <div>
+                <Container fluid={'md'}>
+                    <Row>
+                        <Col xs={12} className={'d-flex align-content-center justify-content-center'}>
+                            <div style={{width: '100%', display: "flex", flexDirection: "column"}}>
+                                <div style={{fontSize: "32px", fontWeight: 'bold'}}>Подборка классики</div>
+                                <div style={{width: '100%'}}>
+                                    <ScrollContainerMovie items={initMovieList}/>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+                <Container fluid={true}>
+                    <Row>
+                        <ScrollContainerBigMovie items={initBigMoviePoster}></ScrollContainerBigMovie>
+                    </Row>
+                </Container>
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div style={{width: '100%', display: "flex", flexDirection: "column"}}>
+                                <div style={{fontSize: "32px", fontWeight: 'bold'}}>Подборка классики</div>
+                                <div style={{width: '100%'}}>
+                                    <ScrollContainerMovie items={initMovieList}/>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         </>
     )
         ;

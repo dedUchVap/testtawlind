@@ -1,0 +1,64 @@
+.form_login{
+    flex-direction: column;
+    margin-top: 10%;
+    display: flex;
+    width: 100%;
+    border-radius: 16px;
+    background-color: var(--bacground_fon_form);
+    height: 350px;
+    padding: 5%;
+}
+.wrapper_form{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+.form_title{
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+.input_email{
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #353232;
+    border-radius: 10px;
+    border: none;
+    height: 45px;
+    width: 100%;
+}
+.input_email:focus-visible{
+    box-shadow: none;
+    outline: none;
+    border-bottom: 2px white solid;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap_form);
+}
+.button_form{
+    background: linear-gradient(to left, var(--color2), var(--color3), var(--color4));
+    border: none;
+    border-radius: 9999px;
+    height: 45px;
+    transition: all 0.1s ease-in-out;
+}
+.button_form:hover{
+    background: linear-gradient(to right, var(--color2), var(--color3), var(--color4));
+    border: solid 5px var(--color5);
+}
+.wrap_checkbox{
+    display: flex;
+    flex-direction: row;
+}
+.user_agreement{
+    padding-left: 5px;
+    color: white;
+    line-height: normal;
+}

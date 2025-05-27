@@ -1,0 +1,23 @@
+.line_pretty{
+    top: -50px;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    -webkit-border-top-left-radius: 1000px;
+    -webkit-border-top-right-radius: 1000px;
+    -moz-border-radius-topleft: 1000px;
+    -moz-border-radius-topright: 1000px;
+    border-top-left-radius: 1000px;
+    border-top-right-radius: 1000px;
+    background: linear-gradient(
+            to top,
+            var(--bacground_fon) 0%,
+            rgba(13, 13, 14, 0.9) 25%,
+            rgba(36, 53, 99, 0.6) 75%,
+            rgba(36, 53, 99, 1) 100%
+    );
+}
+.line_wrap{
+    position: relative;
+    width: 100%;
+}

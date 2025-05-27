@@ -1,0 +1,7 @@
+.wrapper_root{
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bacground_fon);
+    display: flex;
+    position: absolute;
+}
