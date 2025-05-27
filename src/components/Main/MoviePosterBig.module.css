@@ -59,6 +59,7 @@
 }
 
 .describe_poster {
+    text-align: start;
     display: flex;
     justify-content: end;
     color: var(--color1);

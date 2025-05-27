@@ -15,8 +15,8 @@ interface ICardInfo {
 export default function useScroll(
     breakpoints: breakPoints[],
     gap: number,
-    list: never[],
-    scrollContainer: React.RefObject<HTMLDivElement>,
+    list: any[],
+    scrollContainer: React.RefObject<HTMLDivElement | null>,
 ): [number, boolean, (variant: "positive" | "negative") => number, number] {
     const isMobile = useMobile();
     const scrollRefContainer = scrollContainer;
@@ -41,12 +41,12 @@ export default function useScroll(
                 breakPointsRef.current,
                 window.innerWidth
             );
-            if (scrollRefContainer.current) {
+            if (scrollRefContainer?.current) {
                 setWidthCard(
                     calculateWidth(
                         latestScrollInfo.current,
                         scrollRefContainer.current.clientWidth,
-                        gap,
+                        gap
                     )
                 );
             }
@@ -87,7 +87,7 @@ export default function useScroll(
             );
         }
         let nextOffset = 0
-        nextOffset = cardNeedMoved * (widthCard + gap)
+        nextOffset = cardNeedMoved * (widthCard)
         setCardScrollInfo((draft) => {
             draft.remainingCard -= cardNeedMoved;
             draft.flippedCard += cardNeedMoved;
